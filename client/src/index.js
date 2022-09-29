@@ -9,10 +9,9 @@ import rootReducer from './reducers';
 
 //dev tools (not useful in prod)
 import { composeWithDevTools } from "redux-devtools-extension";
-import logger from 'redux-logger';
 
 const store = createStore(
-  rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
+  rootReducer, composeWithDevTools(applyMiddleware(thunk))
 )
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
