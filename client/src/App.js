@@ -7,6 +7,7 @@ import { getUser } from './actions/user.actions';
 
 const App = () => {
   const [uid, setUid] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -18,7 +19,7 @@ const App = () => {
       .then((res) => {setUid(res.data)})
     };
     fetchToken();
-    if (uid) dispatchEvent(getUser(uid))
+    if (uid) dispatch(getUser(uid))
 
    }, [uid]);
 
