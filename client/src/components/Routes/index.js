@@ -12,10 +12,10 @@ const index = () => {
         <Router>
             <Navbar />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/profil" element={<Profil />} />
-                <Route path="/trending" element={<Trending />} />
-                <Route path="*" element={<Home />} />
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/profil" element={<Profil />} />
+                <Route exact path="/trending" element={<Trending />} />
+                {/* <Route path="*" element={<Home />} /> */}
             </Routes>
         </Router>
     );

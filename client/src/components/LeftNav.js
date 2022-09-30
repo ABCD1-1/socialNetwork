@@ -1,14 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useLocation } from "react-router-dom";
 const LeftNav = () => {
+  // extract pathname from location
+  const { pathname } = useLocation();
   return (
     <div className="left-nav-container">
       <div className="icons">
-        <div className="icons-bis">
+        <div className="icons-bis">          
           <NavLink
             to="/"
-            className={({ isActive }) => (isActive ? "active-left-nav" : "")}
+            className={({ isActive }) => (['/'].includes(pathname) ? "active-left-nav" : "")}
           >
             <img src="./img/icons/home.svg" alt="home" />
           </NavLink>
