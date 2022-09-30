@@ -75,7 +75,6 @@ module.exports.follow = async (req, res) => {
 
         }
       );
-      console.log("iciii001");
       // add to following list
       await UserModel.findByIdAndUpdate(
         req.body.idToFollow,

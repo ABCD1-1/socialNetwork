@@ -14,8 +14,18 @@ module.exports.uploadProfil = async (req, res) => {
     file.mv(filePath, (err) => {
         if (err) return res.status(500).json({message: err})
     })
-    return res.json({message: "File uploaded!"})
 
+    try {
+      await UserModel.findByIdAndUpdate(
+        req.body.userId,
+          { $set: { picture: "./uploads/profil/" + fileName } },
+          { new: true, setDefaultsOnInsert: true })
+          .then((data) => res.send(data))
+          .catch((err) => res.status(500).send({ message: err }));
+          
+    } catch (err) {
+      return res.status(500).send({ message: err });
+    }
 };
 
 
