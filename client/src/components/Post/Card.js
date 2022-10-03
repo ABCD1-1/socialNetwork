@@ -27,6 +27,7 @@ const Card = ({ post }) => {
                 usersData
                   .map((user) => {
                     if (user._id === post.posterId) return user.picture;
+                    else return null;
                   })
                   .join("")
               }
@@ -41,6 +42,7 @@ const Card = ({ post }) => {
                     usersData
                       .map((user) => {
                         if (user._id === post.posterId) return user.pseudo;
+                        else return null
                       })
                       .join("")}
                 </h3>
@@ -167,20 +169,7 @@ export default Card;
 //                 </div>
 //               </div>
 //             )}
-//             {post.picture && (
-//               <img src={post.picture} alt="card-pic" className="card-pic" />
-//             )}
-//             {post.video && (
-//               <iframe
-//                 width="500"
-//                 height="300"
-//                 src={post.video}
-//                 frameBorder="0"
-//                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-//                 allowFullScreen
-//                 title={post._id}
-//               ></iframe>
-//             )}
+
 //             {userData._id === post.posterId && (
 //               <div className="button-container">
 //                 <div onClick={() => setIsUpdated(!isUpdated)}>

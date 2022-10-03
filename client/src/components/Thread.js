@@ -10,19 +10,25 @@ const Thread = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.postReducer);
 
-  // const loadMore = () => {
-  //   if (window.innerHeight + document.documentElement.scrollTop + 1 > document.scrollingElement.scrollHeight) {
-  //     setLoadPost(true);
-  //   }
-  // }
+  const loadMore = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >
+      document.scrollingElement.scrollHeight
+    ) {
+      setLoadPost(true);
+    }
+  };
 
   useEffect(() => {
     if (loadPost) {
       dispatch(getPosts(count));
       setLoadPost(false);
-      // setCount(count + 5);
+      setCount(count + 5);
     }
-  }, [loadPost, dispatch]);
+
+    window.addEventListener("scroll", loadMore);
+    return () => window.removeEventListener("scroll", loadMore); // need to remove the event listener at the end in the useEffect
+  }, [loadPost, dispatch, count]);
   return (
     <div className="thread-container">
       <ul>
@@ -33,29 +39,6 @@ const Thread = () => {
       </ul>
     </div>
   );
-  // <div>thread 4:44:35</div>;
 };
 
 export default Thread;
-// const Thread = () => {
-
-//     // window.addEventListener('scroll', loadMore);
-//     // return () => window.removeEventListener('scroll', loadMore);
-//   }, [loadPost, dispatch]);
-//   // }, [loadPost, dispatch, count]);
-
-//   return (
-//     <div className="thread-container">
-//       <ul>
-
-//         {!isEmpty(posts[0]) &&
-//           posts.map((post) => {
-//             return <li>{post._id}</li>;
-//             // return <Card post={post} key={post._id} />;
-//           })}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default Thread;
