@@ -79,7 +79,7 @@ const UpdateProfil = () => {
                           <img src={user.picture} alt="auser-pic" />
                           <h4>{user.pseudo}</h4>
                           <div className="follow-handler">
-                            <FollowHandler idToFollow={user._id} />
+                            <FollowHandler idToFollow={user._id} type="suggestion" />
                           </div>
                         </li>
                       );
@@ -93,7 +93,7 @@ const UpdateProfil = () => {
         {followersPopup && (
           <div className="popup-profil-container">
             <div className="modal">
-              <h3>Abonnements</h3>
+              <h3>Abonnés</h3>
               <span className="cross" onClick={() => setFollowersPopup(false)}>
                 &#10005;
               </span>
@@ -106,7 +106,7 @@ const UpdateProfil = () => {
                           <img src={user.picture} alt="auser-pic" />
                           <h4>{user.pseudo}</h4>
                           <div className="follow-handler">
-                            <FollowHandler idToFollow={user._id} />
+                            <FollowHandler idToFollow={user._id}  type={"suggestion"} />
                           </div>
                         </li>
                       );
