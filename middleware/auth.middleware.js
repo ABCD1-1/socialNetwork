@@ -31,7 +31,7 @@ module.exports.requireAuth = (req, res, next) => {
                 console.log(err);   // no next(), because we detected an error
                 res.send(200).json('no token')
             } else {
-                console.log("decodedToken", decodedToken.id);
+                // console.log("decodedToken", decodedToken.id);
                 next();
             }
         })
