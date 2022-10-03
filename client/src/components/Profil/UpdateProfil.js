@@ -87,8 +87,8 @@ const UpdateProfil = () => {
                         </li>
                       );
                     }
-                    return null;
                   }
+                  return null;
                 })}
               </ul>
             </div>
