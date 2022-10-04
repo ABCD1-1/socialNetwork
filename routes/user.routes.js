@@ -27,8 +27,8 @@ router.post(
   "/upload",
   fileUpload({ createParentPath: true }),
   filesAcceptOne,
-  filesPayLoadExists,
-  fileExtLimiter,
+  // filesPayLoadExists,
+  // fileExtLimiter,
   uploadController.uploadProfil
 );
 

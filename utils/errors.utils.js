@@ -39,11 +39,11 @@ module.exports.uploadErrors = (err) => {
   return errors;
 };
 
-module.exports.filesPayLoadExists = (req, res, next) => {
-  if (!req.files)
-    return res.status(400).json({ message: "Error, missing files" });
-  next();
-};
+// module.exports.filesPayLoadExists = (req, res, next) => {
+//   if (!req.files)
+//     return res.status(400).json({ message: "Error, missing files" });
+//   next();
+// };
 
 module.exports.filesAcceptOne = (req, res, next) => {
   if (req.files.file.length > 1)
@@ -51,36 +51,37 @@ module.exports.filesAcceptOne = (req, res, next) => {
   next();
 };
 
-module.exports.fileExtLimiter = (req, res, next) => {
-  let errors = { format: "", maxSize: "" };
-  const file = req.files.file;
-  const allowedExtArray = [".jpg", ".jpeg", ".png"];
-  if (!allowedExtArray.includes(path.extname(file.name))) {
-    errors.format = "Uncompatible format";
-    return res.status(422).json({
-      errors, //probleme ici ?
-      // 1) que renvoyer pour que ce soit bien visible au front ? actuellement une erreur est correctement envoyé au front
-      // 2) ou retirer et faire comme le tuto
-      // 3) Modifier le front pour mieux observer?
-      // 4) pb communication Redux ?
+// module.exports.fileExtLimiter = (req, res, next) => {
+//   let errors = { format: "", maxSize: "" };
+//   const file = req.files.file;
+//   const allowedExtArray = [".jpg", ".jpeg", ".png"];
+//   if (!allowedExtArray.includes(path.extname(file.name))) {
+//     errors.format = "Uncompatible format";
+//     return res.status(422).json({
+//       errors, //probleme ici ?
+//       //  8:45:23
+//       // 1) que renvoyer pour que ce soit bien visible au front ? actuellement une erreur est correctement envoyé au front
+//       // 2) ou retirer et faire comme le tuto
+//       // 3) Modifier le front pour mieux observer?
+//       // 4) pb communication Redux ?
 
-      // message:
-      //   `Upload failed, only ${allowedExtArray} files are allowed`.replaceAll(
-      //     ",",
-      //     ", "
-      //   ),
-    });
-  }
+//       // message:
+//       //   `Upload failed, only ${allowedExtArray} files are allowed`.replaceAll(
+//       //     ",",
+//       //     ", "
+//       //   ),
+//     });
+//   }
 
-  // Object.keys(files).forEach(key => {
-  //     fileExtensions.push(path.extname(files[key].name))
-  // })
+//   // Object.keys(files).forEach(key => {
+//   //     fileExtensions.push(path.extname(files[key].name))
+//   // })
 
-  // //Are the file extension allowed ?
-  // const allowed = fileExtensions.every(ext => allowedExtArray)
-  // if (!allowed) {
-  //     return res.status(422).json({message: `Upload failed, only ${allowedExtArray} files are allowed`.replaceAll(",", ", ")});
-  // }
+//   // //Are the file extension allowed ?
+//   // const allowed = fileExtensions.every(ext => allowedExtArray)
+//   // if (!allowed) {
+//   //     return res.status(422).json({message: `Upload failed, only ${allowedExtArray} files are allowed`.replaceAll(",", ", ")});
+//   // }
 
-  next();
-};
+//   next();
+// };
