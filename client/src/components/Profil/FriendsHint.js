@@ -58,7 +58,7 @@ const FriendsHint = () => {
                       <p>{usersData[i].pseudo}</p>
                       <FollowHandler
                         idToFollow={usersData[i]._id}
-                        type={"suggestion"}
+                        type="suggestion"
                       />
                     </li>
                   );
