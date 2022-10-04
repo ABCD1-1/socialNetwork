@@ -4,8 +4,6 @@ import Home from '../../pages/Home';
 import Profil from '../../pages/Profil';
 import Trending from '../../pages/Trending';
 import Navbar from '../Navbar';
-// import rootReducer from '../../reducers'
-
 
 const index = () => {
     return (

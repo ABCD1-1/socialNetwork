@@ -4,10 +4,16 @@ const { uploadErrors } = require("../utils/errors.utils");
 module.exports.uploadProfil = async (req, res) => {
   const file = req.files.file;
   try {
+    if (
+      file.mimetype != "image/jpg" &&
+      file.mimetype != "image/png" &&
+      file.mimetype != "image/jpeg"
+    )
+      throw Error("invalid file");
     if (file.size > 500000) throw Error("max size");
   } catch (err) {
     const errors = uploadErrors(err);
-    return res.status(500).json({ errors });
+    return res.status(201).json({ errors });
   }
   const fileName = req.body.name + ".jpg";
   const filePath = `${__dirname}/../client/public/uploads/profil/${fileName}`;

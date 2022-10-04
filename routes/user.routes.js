@@ -8,6 +8,7 @@ const {
   fileExtLimiter,
   filesAcceptOne,
 } = require("../utils/errors.utils");
+
 router.post("/register", authController.signUp);
 router.post("/login", authController.signIn);
 router.get("/logout", authController.logout);
@@ -26,7 +27,7 @@ router.patch("/unfollow/:id", userController.unfollow);
 router.post(
   "/upload",
   fileUpload({ createParentPath: true }),
-  filesAcceptOne,
+  // filesAcceptOne,
   // filesPayLoadExists,
   // fileExtLimiter,
   uploadController.uploadProfil

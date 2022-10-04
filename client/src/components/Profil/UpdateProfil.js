@@ -32,7 +32,6 @@ const UpdateProfil = () => {
           <UploadImg />
           {!isEmpty(error.format) && <p>{error.format}</p>}
           {!isEmpty(error.maxSize) && <p>{error.maxSize}</p>}
-          <p>{error}</p>
         </div>
         <div className="right-part">
           <div className="bio-update">
