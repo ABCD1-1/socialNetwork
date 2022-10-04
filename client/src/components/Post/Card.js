@@ -108,18 +108,20 @@ const Card = ({ post }) => {
             )}
           </div>
           <div className="card-footer">
-            <div className="comment-icon">
-              <img
-                onClick={() => setShowComments(!showComments)}
-                src="./img/icons/message1.svg"
-                alt="comment"
-              />
-              <span>{post.comments.length}</span>
+            <div className="icone-footer">
+              <div className="comment-icon">
+                <img
+                  onClick={() => setShowComments(!showComments)}
+                  src="./img/icons/message1.svg"
+                  alt="comment"
+                />
+                <span>{post.comments.length}</span>
+              </div>
+              <LikeButton post={post} />
             </div>
-            <LikeButton post={post} />
-            <img src="./img/icons/share.svg" alt="share" />
-          </div>
+            
           {showComments && <CardComments post={post} />}
+          </div>
         </>
       )}
     </li>
