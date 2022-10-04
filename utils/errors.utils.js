@@ -31,10 +31,10 @@ module.exports.uploadErrors = (err) => {
   let errors = { format: "", maxSize: "" };
 
   if (err.message.includes("invalid file"))
-    errors.format = "Uncompatible format";
+    errors.format = "Format incompatible";
 
   if (err.message.includes("max size"))
-    errors.maxSize = "The file must be lower than 500Ko";
+    errors.maxSize = "Le fichier doit faire moins de 500Ko";
 
   return errors;
 };
@@ -56,14 +56,8 @@ module.exports.filesAcceptOne = (req, res, next) => {
 //   const file = req.files.file;
 //   const allowedExtArray = [".jpg", ".jpeg", ".png"];
 //   if (!allowedExtArray.includes(path.extname(file.name))) {
-//     errors.format = "Uncompatible format";
-//     return res.status(422).json({
-//       errors, //probleme ici ?
-//       //  8:45:23
-//       // 1) que renvoyer pour que ce soit bien visible au front ? actuellement une erreur est correctement envoyé au front
-//       // 2) ou retirer et faire comme le tuto
-//       // 3) Modifier le front pour mieux observer?
-//       // 4) pb communication Redux ?
+//     errors.format = "Format incompatible";
+//     return res.status(201).json({
 
 //       // message:
 //       //   `Upload failed, only ${allowedExtArray} files are allowed`.replaceAll(
