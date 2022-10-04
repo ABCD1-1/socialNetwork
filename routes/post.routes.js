@@ -1,15 +1,14 @@
 const router = require('express').Router();
 const postController = require('../controllers/post.controller');
 const fileUpload = require("express-fileupload");
-const { fileExtLimiter } = require('../utils/errors.utils');
+const { fileExtLimiter, fileMaxSize } = require('../utils/errors.utils');
 
 router.get('/', postController.readPost);
-router.post('/', fileUpload({createParentPath: true}), postController.createPost);
+router.post('/', fileUpload({createParentPath: true}), fileExtLimiter, fileMaxSize, postController.createPost);
 router.put('/:id', postController.updatePost);
 router.delete('/:id', postController.deletePost);
 router.patch('/like-post/:id', postController.likePost);
 router.patch('/unlike-post/:id', postController.unlikePost);
-
 
 
 // comments
@@ -19,6 +18,4 @@ router.patch('/delete-comment-post/:id', postController.deleteCommentPost);
 
 
 
-
 module.exports = router;
-

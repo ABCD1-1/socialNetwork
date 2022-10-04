@@ -39,43 +39,41 @@ module.exports.uploadErrors = (err) => {
   return errors;
 };
 
-// module.exports.filesPayLoadExists = (req, res, next) => {
-//   if (!req.files)
-//     return res.status(400).json({ message: "Error, missing files" });
-//   next();
-// };
-
-module.exports.filesAcceptOne = (req, res, next) => {
-  if (req.files.file.length > 1)
-    return res.status(400).json({ message: "Only one file can be accepted" });
+module.exports.fileMaxSize = (req, res, next) => {
+  const file = req.files.file;
+  let errors = { format: "", maxSize: "" };
+  if (file.size > 500000) {
+    errors.maxSize = "Le fichier doit faire moins de 500Koooo";
+    return res.status(201).json({ errors });
+  }
   next();
 };
 
-// module.exports.fileExtLimiter = (req, res, next) => {
-//   let errors = { format: "", maxSize: "" };
-//   const file = req.files.file;
-//   const allowedExtArray = [".jpg", ".jpeg", ".png"];
-//   if (!allowedExtArray.includes(path.extname(file.name))) {
-//     errors.format = "Format incompatible";
-//     return res.status(201).json({
+module.exports.filesAcceptOne = (req, res, next) => {
+  let errors = { format: "", maxSize: "" };
+  if (req.files.file.length > 1) {
+    errors.format = `Only one file can be accepted`
+    return res.status(201).json({ errors });
+  }
+  next();
+};
 
-//       // message:
-//       //   `Upload failed, only ${allowedExtArray} files are allowed`.replaceAll(
-//       //     ",",
-//       //     ", "
-//       //   ),
-//     });
-//   }
+module.exports.fileExtLimiter = (req, res, next) => {
+  let errors = { format: "", maxSize: "" };
+  const file = req.files.file;
+  const allowedExtArray = [".jpg", ".jpeg", ".png"];
+  if (!allowedExtArray.includes(path.extname(file.name))) {
+    errors.format = `Format incompatible, seuls les fichiers ${allowedExtArray} sont autorisés`;
+    return res.status(201).json({ errors });
+  }
+  // Object.keys(files).forEach(key => {
+  //     fileExtensions.push(path.extname(files[key].name))
+  // })
 
-//   // Object.keys(files).forEach(key => {
-//   //     fileExtensions.push(path.extname(files[key].name))
-//   // })
-
-//   // //Are the file extension allowed ?
-//   // const allowed = fileExtensions.every(ext => allowedExtArray)
-//   // if (!allowed) {
-//   //     return res.status(422).json({message: `Upload failed, only ${allowedExtArray} files are allowed`.replaceAll(",", ", ")});
-//   // }
-
-//   next();
-// };
+  // //Are the file extension allowed ?
+  // const allowed = fileExtensions.every(ext => allowedExtArray)
+  // if (!allowed) {
+  //     return res.status(422).json({message: `Upload failed, only ${allowedExtArray} files are allowed`.replaceAll(",", ", ")});
+  // }
+  next();
+};

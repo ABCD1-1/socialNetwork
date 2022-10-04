@@ -17,18 +17,6 @@ module.exports.readPost = (req, res) => {
 module.exports.createPost = async (req, res) => {
   let fileName;
   const file = req.files.file;
-  try {
-    if (
-      file.mimetype != "image/jpg" &&
-      file.mimetype != "image/png" &&
-      file.mimetype != "image/jpeg"
-    )
-      throw Error("invalid file");
-    if (file.size > 500000) throw Error("max size");
-  } catch (err) {
-    const errors = uploadErrors(err);
-    return res.status(201).json({ errors });
-  }
   fileName = req.body.posterId + Date.now() + ".jpg";
   const filePath = `${__dirname}/../client/public/uploads/posts/${fileName}`;
   file.mv(filePath, (err) => {

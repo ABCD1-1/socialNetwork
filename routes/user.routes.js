@@ -4,8 +4,8 @@ const userController = require("../controllers/user.controller");
 const uploadController = require("../controllers/upload.controller");
 const fileUpload = require("express-fileupload");
 const {
-  filesPayLoadExists,
   fileExtLimiter,
+  fileMaxSize,
   filesAcceptOne,
 } = require("../utils/errors.utils");
 
@@ -27,9 +27,9 @@ router.patch("/unfollow/:id", userController.unfollow);
 router.post(
   "/upload",
   fileUpload({ createParentPath: true }),
-  // filesAcceptOne,
-  // filesPayLoadExists,
-  // fileExtLimiter,
+  filesAcceptOne,
+  fileMaxSize,
+  fileExtLimiter,
   uploadController.uploadProfil
 );
 
