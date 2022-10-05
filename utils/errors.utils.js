@@ -43,7 +43,7 @@ module.exports.fileMaxSize = (req, res, next) => {
   const file = req.files.file;
   let errors = { format: "", maxSize: "" };
   if (file.size > 500000) {
-    errors.maxSize = "Le fichier doit faire moins de 500Koooo";
+    errors.maxSize = "Le fichier doit faire moins de 500Ko";
     return res.status(201).json({ errors });
   }
   next();
