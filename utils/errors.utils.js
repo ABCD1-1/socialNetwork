@@ -52,7 +52,7 @@ module.exports.fileMaxSize = (req, res, next) => {
 module.exports.filesAcceptOne = (req, res, next) => {
   let errors = { format: "", maxSize: "" };
   if (req.files.file.length > 1) {
-    errors.format = `Only one file can be accepted`
+    errors.format = `Veuillez joindre qu'un seul fichier`
     return res.status(201).json({ errors });
   }
   next();
