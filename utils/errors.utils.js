@@ -4,16 +4,16 @@ module.exports.signUpErrors = (err) => {
   let errors = { pseudo: "", email: "", password: "" };
 
   if (err.message.includes("pseudo"))
-    errors.pseudo = "Incorrect username or already taken";
+    errors.pseudo = "Pseudo incorrect ou déjà utilisé";
 
-  if (err.message.includes("email")) errors.email = "Incorrect email";
+  if (err.message.includes("email")) errors.email = "Email incorrect ou déjà utilisé";
   if (err.message.includes("password"))
-    errors.password = "Password's length must be greater than 6";
+    errors.password = "La longueur du mot de passe doit être supérieure à 6";
 
   if (err.code === 11000 && Object.keys(err.keyValue)[0].includes("pseudo"))
-    errors.pseudo = "Username already taken";
+    errors.pseudo = "Pseudo déjà utilisé";
   if (err.code === 11000 && Object.keys(err.keyValue)[0].includes("email"))
-    errors.email = "Email already taken";
+    errors.email = "Email déjà utilisé";
 
   return errors;
 };
@@ -22,7 +22,7 @@ module.exports.signInErrors = (err) => {
   let errors = { message: "" };
 
   if (err.message.includes("email") || err.message.includes("password"))
-    errors.message = "Unknown email or password";
+    errors.message = "Email ou mot de passe incorrect";
 
   return errors;
 };
