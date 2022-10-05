@@ -21,6 +21,17 @@
 
         .right-part {
             width: 100%;
+            img {
+                height: 40px;
+                width: 40px;
+                cursor: pointer;
+                transition: 0.2s;
+                margin-left: 10px;
+                margin-right: 10px;
+                &:hover {
+                  transform: scale(1.2);
+                }
+              }
         }
         
         .left-part {
