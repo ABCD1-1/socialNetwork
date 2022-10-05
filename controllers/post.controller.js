@@ -15,17 +15,21 @@ module.exports.readPost = (req, res) => {
 };
 
 module.exports.createPost = async (req, res) => {
-  let fileName;
-  const file = req.files.file;
-  fileName = req.body.posterId + Date.now() + ".jpg";
-  const filePath = `${__dirname}/../client/public/uploads/posts/${fileName}`;
-  file.mv(filePath, (err) => {
-    if (err) return res.status(500).json({ message: err });
-  });
+  let fileName, file = "";
+  // console.log("req files", req.files);
+  if (req.files) {
+    file = req.files.file;
+    fileName = req.body.posterId + Date.now() + ".jpg";
+    const filePath = `${__dirname}/../client/public/uploads/posts/${fileName}`;
+    file.mv(filePath, (err) => {
+      if (err) return res.status(500).json({ message: err });
+    });
+  }
+
   const newPost = new PostModel({
     posterId: req.body.posterId,
     message: req.body.message,
-    picture: file != null ? "./uploads/posts/" + fileName : "",
+    picture: file != "" ? "./uploads/posts/" + fileName : "",
     video: req.body.video,
     likers: [],
     comments: [],
@@ -35,7 +39,7 @@ module.exports.createPost = async (req, res) => {
     return res.status(201).json(post);
   } catch (err) {
     const errors = uploadErrors(err);
-    return res.status(400).send(errors);
+    return res.status(201).send(errors);
   }
 };
 

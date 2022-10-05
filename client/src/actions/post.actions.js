@@ -43,7 +43,8 @@ export const addPost = (data) => {
         } else {
           dispatch({ type: GET_POST_ERRORS, payload: "" });
         }
-      });
+      })
+      .catch((err) => console.log(err));
   };
 };
 

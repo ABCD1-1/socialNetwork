@@ -9,7 +9,7 @@ const NewPostForm = () => {
   const [message, setMessage] = useState("");
   const [postPicture, setPostPicture] = useState(null);   //for Front
   const [video, setVideo] = useState("");
-  const [file, setFile] = useState();     //for Back
+  const [file, setFile] = useState("");     //for Back
   const userData = useSelector((state) => state.userReducer);
   const error = useSelector((state) => state.errorReducer.postError);
   const dispatch = useDispatch();
@@ -22,11 +22,10 @@ const NewPostForm = () => {
   const handlePost = async () => {
     if (message || postPicture || video) {
       const data = new FormData();
-      data.append('posterId', userData._id);
-      data.append('message', message);
+      await data.append('posterId', userData._id);
+      await data.append('message', message);
       if (file) data.append("file", file);
-      data.append('video', video);
-
+      if (video) data.append('video', video);
       await dispatch(addPost(data));
       dispatch(getPosts());
       cancelPost();

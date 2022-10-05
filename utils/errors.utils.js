@@ -6,7 +6,8 @@ module.exports.signUpErrors = (err) => {
   if (err.message.includes("pseudo"))
     errors.pseudo = "Pseudo incorrect ou déjà utilisé";
 
-  if (err.message.includes("email")) errors.email = "Email incorrect ou déjà utilisé";
+  if (err.message.includes("email"))
+    errors.email = "Email incorrect ou déjà utilisé";
   if (err.message.includes("password"))
     errors.password = "La longueur du mot de passe doit être supérieure à 6";
 
@@ -40,11 +41,13 @@ module.exports.uploadErrors = (err) => {
 };
 
 module.exports.fileMaxSize = (req, res, next) => {
-  const file = req.files.file;
-  let errors = { format: "", maxSize: "" };
-  if (file.size > 500000) {
-    errors.maxSize = "Le fichier doit faire moins de 500Ko";
-    return res.status(201).json({ errors });
+  if (req.files) {
+    const file = req.files.file;
+    let errors = { format: "", maxSize: "" };
+    if (file.size > 500000) {
+      errors.maxSize = "Le fichier doit faire moins de 500Ko";
+      return res.status(201).json({ errors });
+    }
   }
   next();
 };
@@ -52,28 +55,21 @@ module.exports.fileMaxSize = (req, res, next) => {
 module.exports.filesAcceptOne = (req, res, next) => {
   let errors = { format: "", maxSize: "" };
   if (req.files.file.length > 1) {
-    errors.format = `Veuillez joindre qu'un seul fichier`
+    errors.format = `Veuillez joindre un seul fichier`;
     return res.status(201).json({ errors });
   }
   next();
 };
 
 module.exports.fileExtLimiter = (req, res, next) => {
-  let errors = { format: "", maxSize: "" };
-  const file = req.files.file;
-  const allowedExtArray = [".jpg", ".jpeg", ".png"];
-  if (!allowedExtArray.includes(path.extname(file.name))) {
-    errors.format = `Format incompatible, seuls les fichiers ${allowedExtArray} sont autorisés`;
-    return res.status(201).json({ errors });
+  if (req.files) {
+    let errors = { format: "", maxSize: "" };
+    const file = req.files.file;
+    const allowedExtArray = [".jpg", ".jpeg", ".png"];
+    if (!allowedExtArray.includes(path.extname(file.name))) {
+      errors.format = `Format incompatible, seuls les fichiers ${allowedExtArray} sont autorisés`;
+      return res.status(201).json({ errors });
+    }
   }
-  // Object.keys(files).forEach(key => {
-  //     fileExtensions.push(path.extname(files[key].name))
-  // })
-
-  // //Are the file extension allowed ?
-  // const allowed = fileExtensions.every(ext => allowedExtArray)
-  // if (!allowed) {
-  //     return res.status(422).json({message: `Upload failed, only ${allowedExtArray} files are allowed`.replaceAll(",", ", ")});
-  // }
   next();
 };

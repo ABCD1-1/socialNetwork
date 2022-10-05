@@ -67,7 +67,6 @@ const Card = ({ post }) => {
 
               <span>{dateParser(post.createdAt)}</span>
             </div>
-            {/* <p className="message">{post.message}</p> */}
             {isUpdated ? (
               <div className="update-post">
                 <textarea
