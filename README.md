@@ -39,20 +39,20 @@
 
 5. À partir de la racine du projet, ouvrir un terminal et installer les dépendances avec la commande suivante :
 
-  npm install
+    npm install
   
-  
+
   - Puis taper la commande suivante pour lancer le Back :
    npm start
 
 6. Ouvrir un autre terminal, se déplacer dans le dossier client et installer les dépendances (front) avec les commandes suivantes :
 
-  cd client
-  npm install
+    cd client
+    
+    npm install
 
 
   - Puis taper la commande suivante pour lancer le Back :
-
    npm start
 
 7. En naviguant dans l'url http://localhost:3000/, vous pouvez à présent créer des utilisateurs, vous connecter, poster, commenter, liker, suivre d'autres utilisateurs, etc. !
