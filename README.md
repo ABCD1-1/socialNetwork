@@ -44,6 +44,6 @@
    cd client
    npm start
 
-7. Vous pouvez à présent créer des utilisateurs, vous connecter, poster, commenter, liker, suivre d'autres utilisateurs, etc. !
+7. En naviguant dans l'url http://localhost:3000/, vous pouvez à présent créer des utilisateurs, vous connecter, poster, commenter, liker, suivre d'autres utilisateurs, etc. !
 
 #
