@@ -48,11 +48,11 @@
 6. Ouvrir un autre terminal, se déplacer dans le dossier client et installer les dépendances (front) avec les commandes suivantes :
 
     cd client
-    
+
     npm install
 
 
-  - Puis taper la commande suivante pour lancer le Back :
+  - Puis taper la commande suivante pour lancer le Front :
    npm start
 
 7. En naviguant dans l'url http://localhost:3000/, vous pouvez à présent créer des utilisateurs, vous connecter, poster, commenter, liker, suivre d'autres utilisateurs, etc. !
